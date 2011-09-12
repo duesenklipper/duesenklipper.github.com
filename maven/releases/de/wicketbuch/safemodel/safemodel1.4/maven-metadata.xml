@@ -3,12 +3,13 @@
   <groupId>de.wicketbuch.safemodel</groupId>
   <artifactId>safemodel1.4</artifactId>
   <versioning>
-    <release>1.3.1</release>
+    <release>1.3.2</release>
     <versions>
       <version>1.1</version>
       <version>1.3</version>
       <version>1.3.1</version>
+      <version>1.3.2</version>
     </versions>
-    <lastUpdated>20110912145757</lastUpdated>
+    <lastUpdated>20110912161805</lastUpdated>
   </versioning>
 </metadata>
