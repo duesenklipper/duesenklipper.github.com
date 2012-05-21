@@ -3,7 +3,7 @@
   <groupId>de.wicketbuch.safemodel</groupId>
   <artifactId>safemodel1.5</artifactId>
   <versioning>
-    <release>1.3.4</release>
+    <release>1.3.4.1</release>
     <versions>
       <version>1.1</version>
       <version>1.2</version>
@@ -12,7 +12,8 @@
       <version>1.3.2</version>
       <version>1.3.3</version>
       <version>1.3.4</version>
+      <version>1.3.4.1</version>
     </versions>
-    <lastUpdated>20120521131331</lastUpdated>
+    <lastUpdated>20120521133120</lastUpdated>
   </versioning>
 </metadata>
