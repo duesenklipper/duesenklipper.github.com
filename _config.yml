@@ -1,0 +1,13 @@
+# Site settings
+title: How I make machines do what I want
+email: cmenzel (at) wicketbuch.de
+description: > # this means to ignore newlines until "baseurl:"
+  This is a blog about my technical explorations, works and experiments. I hate computers for a living, but I love making
+  them do what I want.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://blog.duesenklipper.de" # the base hostname & protocol for your site
+twitter_username: duesenklipper
+github_username:  duesenklipper
+
+# Build settings
+markdown: kramdown
