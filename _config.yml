@@ -9,6 +9,8 @@ url: "http://blog.duesenklipper.de" # the base hostname & protocol for your site
 twitter_username: duesenklipper
 github_username:  duesenklipper
 
+permalink: :year/:month/:day/:title.html
+
 # Build settings
 markdown: kramdown
 

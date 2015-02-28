@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Bringing order to my papers with Linux-based document scanning"
-#categories: linux scanning documents ocr howto
+categories: linux scanning documents ocr howto
 ---
 I have considerable difficulty with keeping papers and documents in order and well-filed. Yes, I'm talking about
 dead-tree documents. They still exist, and are still important for many things. Getting them filed in a timely manner
@@ -89,7 +89,7 @@ used to watch file system events, so I googled a bit for anything that used that
     /home/calle/Documents/scan IN_CLOSE_WRITE /home/calle/bin/pdfocr-incoming.fish $@/$# /home/calle/Documents/scanned/$#
 
 I recommend `incron`'s pretty good man page for details on the configuration. This line tells `incron` to watch the
-directory `/home/calle/Documents/scan` for files that have been written to and are now closed ('IN_CLOSE_WRITE') and
+directory `/home/calle/Documents/scan` for files that have been written to and are now closed (`IN_CLOSE_WRITE`) and
 then invoke `pdfocr-incoming.fish`, a small wrapper script for `pdfocr`:
 
     #!/usr/bin/fish
