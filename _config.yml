@@ -11,3 +11,7 @@ github_username:  duesenklipper
 
 # Build settings
 markdown: kramdown
+
+highlighter: pygments
+lsi: false
+exclude: [LICENSE, CNAME, README.md, .gitignore, Gemfile, Gemfile.lock]

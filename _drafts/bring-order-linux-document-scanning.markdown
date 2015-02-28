@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Bringing order to my papers with Linux-based document scanning"
-categories: linux scanning documents ocr howto
+#categories: linux scanning documents ocr howto
 ---
 I have considerable difficulty with keeping papers and documents in order and well-filed. Yes, I'm talking about
 dead-tree documents. They still exist, and are still important for many things. Getting them filed in a timely manner
@@ -22,8 +22,8 @@ rather value my privacy, so I didn't go with those services.
 
 ## What do I need to keep private data private?
 
-So, I needed something that would keep my data on my own machines. I have an HP Officejet 6500, which even has an ADF.
-Sounds good, right? Let's look at what I want:
+So, I needed something that would keep my data on my own machines. I have an HP Officejet 6500, which even has an
+<abbr title="automatic document feeder">ADF</abbr>. Sounds good, right? Let's look at what I want:
 
 1. I want to just dump documents into the scanner and not have to futz around with them afterwards.
 2. I don't want to do anything special for double-sided documents.
