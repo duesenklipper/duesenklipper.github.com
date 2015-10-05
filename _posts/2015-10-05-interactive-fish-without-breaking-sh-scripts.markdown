@@ -22,6 +22,7 @@ This is what I want to achieve:
   work.
 * When I exit this `fish`, the connection should terminate instead of dropping me into an outer shell.
 * When a script like `ssh-copy-id` connects, `fish` should not be started. Instead, something `sh`-capable should run, for example `bash`.
+* I should still be able to run `bash` interactively, by running `bash` from `fish`.
 
 Here's how I did it:
 
@@ -36,10 +37,11 @@ Here's how I did it:
               *)  ;;
         esac
         
-What does this little monstrosity do? `bash` stores some of its runtime flags in `$-`. If it's 
-an interactive shell, that string will contain `i`. 
+What does this little monstrosity do? 
 
-So since this is in `~/.bash_login`, we know we are a login shell. Combined with the `i` flag 
+Since this is in `~/.bash_login`, we know we are a login shell. "Manually" launched `bash` instances will not run this script and so will behave normally. 
+
+`bash` stores some of its runtime flags in `$-`. If it's an interactive shell, that string will contain `i`. Given that here we are in a login shell and combining that with the `i` flag 
 being present, we know there is a human who just logged in and who has a keyboard to do interactive
 things. Let's give him a `fish`.
 
