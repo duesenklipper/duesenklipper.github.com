@@ -53,5 +53,14 @@ What? You were logging just fine a minute ago! Okay, let's edit `catalina.policy
 Screw this, you're supposed to be using log4j, not JDK logging. The `-security` switch is not getting me anywhere and I
 don't feel like messing around with the logging configuration. Launching from the command line works without that
 switch, so you'd think IDEA could launch an RMI-using Tomcat without it too.
+
+My gut feeling says something else is going wrong here. Time to look at what IDEA is doing differently from what I do
+on the command line. We both use `catalina.sh` to start Tomcat, and that is a `/bin/sh` script. So let's just add `-x`
+to the shebang to see what is really going on.
+
+No screamingly obvious difference to be found, except... Hey. That's not my Tomcat's webapp directory IDEA is using,
+it's something under `~/.IntellijIDEA15/`. I hadn't used Tomcat's ability to split its installation directory
+(`$CATALINA_HOME`) and its work/deployment directory (`$CATALINA_BASE`) in a long time, so that surprised me for a
+moment. Still, could there be a problem with the configuration created by IDEA in its directory?
  
 ## <a name="tldr"></a>TL;DR
