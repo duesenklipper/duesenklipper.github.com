@@ -16,7 +16,7 @@ tried to make the truth very non-obvious. Since I spend the majority of my worki
 this will be about Java.
 
 If you're coming here to see the solution without the possibly entertaining story of how I got there,
-[here's the tl;dr](#tldr).
+[skip to the tl;dr](#tldr).
 
 ## The case of the disabled classloader
 
@@ -62,5 +62,39 @@ No screamingly obvious difference to be found, except... Hey. That's not my Tomc
 it's something under `~/.IntellijIDEA15/`. I hadn't used Tomcat's ability to split its installation directory
 (`$CATALINA_HOME`) and its work/deployment directory (`$CATALINA_BASE`) in a long time, so that surprised me for a
 moment. Still, could there be a problem with the configuration created by IDEA in its directory?
+
+    $ meld ~/opt/tomcat/ ~/.IntelliJIdea15/system/tomcat/my_project/
+    
+Hm. No interesting differences - basically the only things that are different between the two directories are the paths
+referenced in some configuration files, because they are in different directories, after all.
+
+Oh. I overlooked something in the logs earlier. IDEA is passing some extra system properties to Tomcat.
+
+    -Dcom.sun.management.jmxremote= 
+    -Dcom.sun.management.jmxremote.port=1099 
+    -Dcom.sun.management.jmxremote.ssl=false 
+    -Dcom.sun.management.jmxremote.authenticate=false 
+    -Djava.rmi.server.hostname=127.0.0.1
  
+The purpose of all these is to configure Tomcat's JMX support so IDEA can query it for the status of the webapp
+deployments and other things. This looks completely harmless. But nothing else seems to have been the cause, so let's
+experiment. If I pass all of these options on the command line using `$CATALINA_OPTS`... _Kaboom_. Finally, I can 
+reproduce the error mentioned earlier. It blows up with the exact same message, the disabled RMI classloader.
+
+So, let's try removing these parameters one by one to see which one causes the error. After several tries, I removed
+`-Dcom.sun.management.jmxremote.port=1099`. And the error disappeared. Slowly a realization dawned on me. Really? I
+mean, _really?_
+
+Let's verify this. Using <code>-Dcom.sun.management.jmxremote.port=1<strong><em>2</em></strong>99</code>... it works.
+And changing the JMX port in IDEA's Tomcat configuration makes it work in IDEA as well. **ARGH!**
+
+I even re-checked the logs from earlier. There was _nothing at all_ about a port conflict in there. Zero. I didn't have
+Tomcat's debug logging turned on, but seriously, something like this should be a big glaring *`ERROR`* if not
+**`FATAL`**. And it especially shouldn't claim classloading doesn't work due to a security manager problem. That is just
+ridiculous.
+
 ## <a name="tldr"></a>TL;DR
+
+Tomcat lies, or maybe it's RMI that does it. When there is a port conflict between Tomcat's JMX and RMI, you won't be
+told about the colliding ports, instead it will much later claim that it's missing a security manager and thus RMI
+classloading is disabled. Easy fix: Change the JMX port.
