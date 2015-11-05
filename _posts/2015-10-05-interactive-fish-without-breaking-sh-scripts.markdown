@@ -9,7 +9,7 @@ I've also switched to using `fish` for scripting, rather than bash. This has a g
 
 `sh` syntax is of course time-tested and much beloved by many users and admins. But if we're really honest, it's a bit of a mess. `fish` improves on this a lot. Have a look at [its tutorial](http://fishshell.com/docs/current/tutorial.html) to see things like in-terminal syntax highlighting, sane arrays, sane functions and plenty more.
 
-However, with `sh` being a standard and `bash` being nearly everywhere, there is a lot of stuff out there that blindly assumes it can just dump `sh`-style commands into e.g. an `ssh` connection and have things work on the other hand. The culprit that annoys me the most is `ssh-copy-id` &mdash; when I changed my login shell to `fish` on a server, it broke down, because `fish` didn't understand what that script wanted.
+However, with `sh` being a standard and `bash` being nearly everywhere, there is a lot of stuff out there that blindly assumes it can just dump `sh`-style commands into e.g. an `ssh` connection and have things work on the other end. The culprit that annoys me the most is `ssh-copy-id` &mdash; when I changed my login shell to `fish` on a server, it broke down, because `fish` didn't understand what that script wanted.
 
 There's an easy fix for that bug in the script: It could simply make `ssh` launch an `sh`-compatible shell before pouring in the commands. This fix is in the works in upstream, but at least in Ubuntu 15.04 it's not available yet.
 
